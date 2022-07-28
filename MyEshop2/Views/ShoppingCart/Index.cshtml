@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MyEshop2.Models.ShowShoppingCartcs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sum)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum)
+        </td>
+        <td>
+           
+            <a href="/ShoppingCart/CountUp/@item.ProductID" class="btn btn-success btn-xs">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+
+            <a href="/ShoppingCart/CountDown/@item.ProductID" class="btn btn-warning btn-xs">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </a>
+
+            <a href="/ShoppingCart/Remove/@item.ProductID" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
+        </td>
+        <td>
+            @Html.ActionLink("تایید و پرداخت", "Save", new { id = item.ProductID }) 
+
+        </td>
+    </tr>
+}
+
+</table>

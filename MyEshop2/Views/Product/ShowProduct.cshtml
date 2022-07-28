@@ -1,0 +1,36 @@
+﻿@model MyEshop2.Models.Products
+
+@{
+    ViewBag.Title = "ShowProduct";
+}
+
+<div class="thumbnail" style="overflow:hidden">
+
+    <div class="well well-sm text-center">
+        @Model.ProductTitle
+    </div>
+    <img class="thumbnail pull-left" src="~/ProductImages/Image/@Model.ProductImage" width="150" />
+    @Html.Raw(Model.ProductDescription)
+    <hr style="clear:both"/>
+
+    @if (Model.Product_Galleries.Any())
+    {
+        foreach (var item in Model.Product_Galleries.ToList())
+        {
+            <div class="col-md-3 col-sm-3" style="padding-top:50px">
+                <img src="~/ProductImages/Image/@item.ImageName" />
+            </div>
+
+        }
+
+    }
+    <hr style="clear:both" />
+    @if (Model.Product_Tags.Any())
+    {
+        foreach (var item in Model.Product_Tags.ToList())
+        {
+            <a class="btn btn-default btn-sm" href="/Search/Tag/@item.TagTitle">@item.TagTitle</a>
+        }
+    }
+    <hr />
+</div>

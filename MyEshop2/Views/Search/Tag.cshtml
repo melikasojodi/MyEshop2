@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MyEshop2.Models.Products>
+
+@{
+    ViewBag.Title = "Tag";
+}
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="~/ProductImages/Image/@item.ProductImage" class="img-responsive img-rounded" />
+            <div class="caption">
+                <h3>@item.ProductTitle</h3>
+                <p>@item.ProductPrice.ToString("0,#تومان")</p>
+                <p><a href="#" class="btn btn-primary" onclick="AddToBasket(@item.ProductID)" role="button">خرید</a> <a href="~/Product/ShowProduct/@item.ProductID" class="btn btn-default" role="button">جرییات</a></p>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*<script>
+    function AddToBasket(id) {
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Api/Shop",
+                type: "Get",
+                data: { Productid: id }
+
+            }).done(function (result) {
+                $('#CountShopCart').html(result);
+            });
+        });
+
+    }
+</script>*@
